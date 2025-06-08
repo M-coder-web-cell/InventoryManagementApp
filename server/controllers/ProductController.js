@@ -4,7 +4,7 @@ const createProduct = async (req, res) => {
   try {
     const { name, category, quantity, size, color, sellerid } = req.body;
 
-    if (!name || !category || !quantity || !sellerid) {
+    if (!name || !quantity) {
       return res.status(400).json({ status: "fail", message: "Missing fields" });
     }
 
@@ -12,7 +12,8 @@ const createProduct = async (req, res) => {
         return res.status(400).json({ status: "fail", message: "AI response is empty or failed" });
       }
 
-      if(req.action === "add"){
+      if(req.action || req.action.toLowerCase() === "add"){
+
 
         const product = await new Product({
           name,
@@ -25,12 +26,9 @@ const createProduct = async (req, res) => {
 
         const newProduct = await product.save();
 
-        const cleanProduct = newProduct.toObject({ versionKey: false });
-        delete cleanProduct._id;
-
         return res.status(201).json({
           status: "success",
-          product: cleanProduct,
+          product: newProduct,
         });
       } else {
         return res.status(400).json({ status: "fail", message: "Unsupported action" });
@@ -41,6 +39,49 @@ const createProduct = async (req, res) => {
     res.status(500).json({ status: "error", message: "Server Error" });
   }
 };
+const updateProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updates = req.body;
+    
+    if(req.action && req.action.toLowerCase()==="update"){
+      const product = await Product.findByIdAndUpdate(id, updates, { new: true });
 
-export { createProduct };
+      if (!product) {
+        return res.status(404).json({ status: "fail", message: "Product not found" });
+      }
+
+      return res.status(200).json({
+        status: "success",
+        product,
+      });
+    }
+  } catch (err) {
+    console.error("Error in updateProduct:", err);
+    res.status(500).json({ status: "error", message: "Server Error" });
+  }
+};
+const deleteProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if(req.action && req.action.toLowerCase() === "remove"){
+      const product = await Product.findByIdAndDelete(id);
+
+      if (!product) {
+        return res.status(404).json({ status: "fail", message: "Product not found" });
+      }
+
+      return res.status(200).json({
+        status: "success",
+        message: "Product deleted successfully",
+        product
+      });
+    }
+  } catch (err) {
+    console.error("Error in deleteProduct:", err);
+    res.status(500).json({ status: "error", message: "Server Error" });
+  }
+}; //jab bhi frontend ka kaam karoge frontend ke url parameters se id leke backend ke params mein pass kardena 
+export { createProduct, updateProduct, deleteProduct };
 

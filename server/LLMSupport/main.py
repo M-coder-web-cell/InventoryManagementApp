@@ -4,6 +4,7 @@ from groq import Groq
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
+from fastapi.responses import JSONResponse
 import json
 
 # Load environment variables
@@ -25,20 +26,21 @@ async def LLM_Response(payload: Query):
             {
                 "role": "system",
                 "content": "Output JSON with fields action (Add, Remove, Update only), quantity, name; optionally color, size, category. Respond only with JSON, no extra text."
-                #this prompt is 35 tokens for general GPTs
             },
             {
                 "role": "user",
                 "content": payload.query,
             }
         ],
-        model="llama3-8b-8192",  
-        max_completion_tokens= 40
+        model="llama3-8b-8192",
+        max_completion_tokens=40,
+        response_format={"type": "json_object"}
     )
+    
+    content = chat_completion.choices[0].message.content
+    print("Raw LLM response:", content)
 
-    parsed = json.loads(chat_completion.choices[0].message.content)
-    print(parsed)
-    return parsed
+    return content
 
 #run with uvicorn server.LLMSupport.main:app --host 0.0.0.0 --port 8000 --reload and on the callings do 127.0.0.1 explicitly 
 #0.0.0.0 allows from all addresses

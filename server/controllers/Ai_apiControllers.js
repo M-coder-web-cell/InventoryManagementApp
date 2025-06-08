@@ -7,7 +7,7 @@ const AI_call = async (req, res, next)=>{
             headers:{
                 "Content-Type":"application/json"
             },
-            body: JSON.stringify(req.body.query)
+            body: JSON.stringify({query: req.body.query})
         })
         if(!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
