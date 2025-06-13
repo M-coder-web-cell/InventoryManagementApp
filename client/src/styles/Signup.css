@@ -1,0 +1,104 @@
+.signup-container {
+  max-width: 400px;
+  margin: 4rem auto;
+  background: var(--color-navbar-bg);
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px var(--color-shadow);
+  font-family: 'Poppins', sans-serif;
+  color: var(--color-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.signup-container h2 {
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: var(--color-text);
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.signup-form input {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  border: 1.8px solid #cbd5e1; /* light border */
+  border-radius: 8px;
+  outline-offset: 2px;
+  transition: border-color 0.25s ease, background-color 0.3s ease;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+.signup-form input::placeholder {
+  color: #94a3b8; /* subtle grey */
+}
+
+.signup-form input:focus {
+  border-color: var(--color-navbar-text);
+  background-color: var(--color-bg);
+}
+
+.signup-form button {
+  background-color: var(--color-navbar-text);
+  color: var(--color-bg);
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 0.85rem 0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.signup-form button:hover,
+.signup-form button:focus {
+  background-color: var(--color-link-hover);
+  outline: none;
+}
+
+.signup-error {
+  background-color: #fee2e2; /* light red */
+  color: #b91c1c; /* red */
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.signup-footer {
+  margin-top: 1.6rem;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.signup-footer a {
+  color: var(--color-navbar-text);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.signup-footer a:hover {
+  color: var(--color-link-hover);
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .signup-container {
+    margin: 2rem 1rem;
+    padding: 1.8rem 2rem;
+  }
+}

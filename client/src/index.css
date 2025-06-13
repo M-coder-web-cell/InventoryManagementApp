@@ -1,0 +1,110 @@
+:root {
+  --color-bg: #f5f8ff;        /* light background */
+  --color-text: #1a1a2e;      /* light text */
+  --color-navbar-bg: #ffffff; /* light navbar */
+  --color-navbar-text: #1e90ff; /* dodger blue brand */
+  --color-shadow: rgba(30, 144, 255, 0.15);
+  --color-link-hover: #1e90ff;
+  --color-link-text: #1a1a2e;
+}
+
+[data-theme='dark'] {
+  --color-bg: #121224;         /* dark background */
+  --color-text: #f5f8ff;       /* light text */
+  --color-navbar-bg: #1a1a2e;  /* dark navbar */
+  --color-navbar-text: #73c2fb; /* maya blue brand */
+  --color-shadow: rgba(0, 0, 0, 0.7);
+  --color-link-hover: #73c2fb;
+  --color-link-text: #f5f8ff;
+}
+
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Poppins', sans-serif;
+}
+
+main {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 1.5rem 2.5rem;
+  background: var(--color-navbar-bg);
+  border-radius: 12px;
+  box-shadow: 0 10px 20px var(--color-shadow);
+}
+
+.navbar {
+  background-color: var(--color-navbar-bg);
+  padding: 1rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 4px 12px var(--color-shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar__brand {
+  color: white;
+  font-weight: 1000;
+  font-size: 2rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s ease;
+}
+
+.navbar__brand:hover {
+  color: var(--color-link-hover);
+}
+
+.navbar__links {
+  display: flex;
+  gap: 2rem;
+}
+
+.navbar__link {
+  color: var(--color-link-text);
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 0.25rem;
+  transition: color 0.3s ease;
+}
+
+.navbar__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 3px;
+  background-color: var(--color-link-hover);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.navbar__link:hover {
+  color: var(--color-link-hover);
+}
+
+.navbar__link:hover::after {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    padding: 1rem 1.5rem;
+    gap: 1rem;
+  }
+  .navbar__links {
+    gap: 1.2rem;
+  }
+}

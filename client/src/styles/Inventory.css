@@ -1,0 +1,199 @@
+/* Inventory Layout */
+.inventory-main {
+  max-width: 900px;
+  margin: 3rem auto 2rem auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: var(--color-bg);
+}
+
+.inventory-header {
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: var(--color-navbar-text);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.5px;
+}
+
+.inventory-empty {
+  color: #b0b8c9;
+  font-size: 1.15rem;
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+/* Query Section */
+.query-section {
+  background: var(--color-navbar-bg);
+  border-radius: 16px;
+  box-shadow: 0 2px 16px var(--color-shadow);
+  border: 1px solid var(--color-border, #e6eaf3);
+  padding: 2.2rem 2rem 1.5rem 2rem;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.query-title {
+  font-size: 1.18rem;
+  font-weight: 600;
+  color: var(--color-navbar-text);
+  margin-bottom: 0.7rem;
+  letter-spacing: 0.01em;
+}
+
+.query-form {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  width: 100%;
+}
+
+.query-form input {
+  flex: 1;
+  padding: 0.85rem 1.1rem;
+  font-size: 1.07rem;
+  border: 1.5px solid var(--color-border, #e6eaf3);
+  border-radius: 10px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  outline: none;
+  font-family: inherit;
+  transition: border 0.2s;
+}
+
+.query-form input:focus {
+  border: 1.5px solid var(--color-navbar-text);
+}
+
+.query-form button {
+  padding: 0.85rem 1.6rem;
+  background: var(--color-navbar-text);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.07rem;
+  font-family: inherit;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px var(--color-shadow);
+}
+
+.query-form button:hover {
+  background: var(--color-link-hover);
+}
+
+.query-response {
+  font-size: 1.03rem;
+  color: var(--color-navbar-text);
+  background: #f3f8ff;
+  border-radius: 8px;
+  padding: 0.7rem 1.1rem;
+  margin-top: 0.2rem;
+  box-shadow: 0 1px 4px var(--color-shadow);
+  min-height: 32px;
+  word-break: break-word;
+}
+
+/* Dialog Overlay and Box */
+.dialog-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(30,40,60,0.13);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.22s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.dialog-box {
+  background: var(--color-navbar-bg);
+  color: var(--color-text);
+  padding: 2.2rem 2.5rem 2rem 2.5rem;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px var(--color-shadow);
+  min-width: 320px;
+  max-width: 94vw;
+  text-align: center;
+  animation: dialogPop 0.33s cubic-bezier(.68,-0.55,.27,1.55);
+  transform-origin: 50% 60%;
+}
+
+@keyframes dialogPop {
+  0% { opacity: 0; transform: scale(0.8) translateY(40px);}
+  70% { opacity: 1; transform: scale(1.04) translateY(-8px);}
+  100% { opacity: 1; transform: scale(1) translateY(0);}
+}
+
+.dialog-box h3 {
+  margin-bottom: 1.1rem;
+  font-size: 1.22rem;
+  font-weight: 700;
+  color: var(--color-navbar-text);
+}
+
+.dialog-box p {
+  margin-bottom: 2rem;
+  color: var(--color-text);
+  font-size: 1.05rem;
+}
+
+.dialog-actions {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+}
+
+.dialog-actions button {
+  background: var(--color-danger, #e74c3c);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px var(--color-shadow);
+  transition: background 0.2s, transform 0.15s;
+}
+
+.dialog-actions button:last-child {
+  background: #f3f8ff;
+  color: var(--color-navbar-text);
+  box-shadow: none;
+  border: 1.5px solid var(--color-border, #e6eaf3);
+}
+
+.dialog-actions button:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .inventory-main {
+    padding: 0 0.5rem;
+    gap: 1.2rem;
+  }
+  .query-section {
+    max-width: 99vw;
+    border-radius: 10px;
+    padding: 1.2rem 0.7rem 1rem 0.7rem;
+  }
+  .dialog-box {
+    padding: 1.2rem 0.7rem;
+    min-width: 0;
+  }
+}

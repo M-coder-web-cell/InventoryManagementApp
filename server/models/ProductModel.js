@@ -2,7 +2,8 @@ import mongoose from "mongoose"
 
 const ProductSchema= new mongoose.Schema({
     userid:{
-        type:String
+        type:String,
+        required: true
     },
     name:{
         type: String,

@@ -1,0 +1,108 @@
+.card {
+  background-color: var(--color-navbar-bg);
+  color: var(--color-text);
+  border-radius: 12px;
+  box-shadow: 0 8px 16px var(--color-shadow);
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+  box-sizing: border-box;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 30px var(--color-shadow);
+}
+
+.card-main {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 85%;
+  overflow: hidden;
+}
+
+.card-title {
+  margin: 0 0 0.3rem 0;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--color-navbar-text);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.card-subtitle {
+  margin: 0;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--color-link-hover);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.card-content {
+  display: flex;
+  gap: 1.2rem;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  flex-wrap: nowrap;
+  overflow: hidden;
+  align-items: center;
+}
+
+.card-content span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-quantity {
+  font-weight: 900;
+  font-size: 1.6rem;
+  color: var(--color-navbar-text);
+  background-color: #1e90ff44;
+  padding: 0.3rem 1rem;
+  border-radius: 8px;
+  width: fit-content;
+  user-select: none;
+  box-shadow: 0 2px 8px var(--color-shadow);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.card-delete-btn {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-left: 1.5rem;
+  display: flex;
+  align-items: center;
+  padding: 0.3rem;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.card-delete-btn:hover {
+  background: #ffeaea;
+}
+
+.card-delete-btn svg {
+  display: block;
+}
