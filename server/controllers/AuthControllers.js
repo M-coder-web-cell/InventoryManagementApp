@@ -7,7 +7,6 @@ const signToken = userid => {
     expiresIn: '90d'
   });
 }
-
 const protect = async (req, res, next) => {
   try {
     const token = req.cookies.jwt;
@@ -26,7 +25,6 @@ const protect = async (req, res, next) => {
     return res.status(401).json({ message: "Unauthorized!" });
   }
 };
-
 const signup = async (req, res) => {
   try {
     const { email, name, password, passwordConfirm } = req.body;
@@ -66,7 +64,6 @@ const signup = async (req, res) => {
     });
   }
 };
-
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -114,7 +111,6 @@ const login = async (req, res) => {
     });
   }
 }
-
 const logout = (req, res) => {
   res.clearCookie("jwt", {
     httpOnly: true,

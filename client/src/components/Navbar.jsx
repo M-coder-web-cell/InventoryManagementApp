@@ -36,6 +36,7 @@ export default function Navbar() {
       <div className="navbar__links">
         <a href="/" className="navbar__link">Home</a>
         <a href="/inventory" className="navbar__link">Inventory</a>
+        <a href="/dashboard" className="navbar__link">Dashboard</a>
         <a href="/profile" className="navbar__link">Profile</a>
         <button className="navbar__link navbar__logout" onClick={handleLogout}>
           Logout

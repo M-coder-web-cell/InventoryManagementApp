@@ -86,8 +86,7 @@ const deleteProduct = async (req, res) => {
     console.error("Error in deleteProduct:", err);
     res.status(500).json({ status: "error", message: "Server Error" });
   }
-}; //jab bhi frontend ka kaam karoge frontend ke url parameters se id leke backend ke params mein pass kardena 
-
+}; 
 
 const getProducts = async (req, res) => {
   try {
@@ -96,11 +95,15 @@ const getProducts = async (req, res) => {
       return res.status(401).json({ status: "fail", message: "Unauthorized" });
     }
 
-    const products = await Product.find({ userid: sellerid });
+    const products = await Product.find({ userid: sellerid }).select("-__v");
 
     
+
+    const { password, __v, createdAt, updatedAt, ...user } = req.user._doc || req.user;
+
     return res.status(200).json({
       status: "success",
+      user: user,
       products
     });
   } catch (err) {

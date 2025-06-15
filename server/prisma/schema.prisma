@@ -12,6 +12,7 @@ model User {
   name       String
   email      String   @unique
   password   String
+  tier       Tier     @default(FREE)
   role       Role     @default(USER)
   phone      String?  @unique
   isVerified Boolean  @default(false)
@@ -25,5 +26,11 @@ enum Role {
   SELLER
   STAFF
   USER
+}
+
+enum Tier {
+  FREE
+  PRO 
+  ENTERPRISE
 }
 
