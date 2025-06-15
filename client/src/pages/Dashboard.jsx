@@ -40,7 +40,7 @@ const CustomBarTooltip = ({ active, payload, label }) => {
 
 export default function Dashboard() {
   const [products, setProducts] = useState([]);
-  const [user, setUser] = useState({ name: "", tier: "" });
+  const [user, setUser] = useState({ name: "", tier: "", email:"" });
 
   useEffect(() => {
     fetch("http://localhost:3000/api/invenmgm/products/getAllProducts", {
@@ -55,17 +55,19 @@ export default function Dashboard() {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/invenmgm/users/me", {
+    fetch("http://localhost:3000/api/invenmgm/users/getUserInfo", {
       credentials: "include"
     })
       .then(res => res.json())
       .then(data => {
+        console.log(data)
         setUser({
-          name: data?.name || "User",
-          tier: data?.role || "FREE"
+          name: data?.userInfo.name || "User",
+          tier: data?.userInfo.tier || "FREE",
+          email: data?.userInfo.email || ""
         });
       })
-      .catch(() => setUser({ name: "User", tier: "FREE" }));
+      .catch(() => setUser({ name: "User", tier: "FREE", email:""}));
   }, []);
 
   const colors = ["#1e90ff", "#82ca9d", "#ffb347", "#ff6961", "#a084e8"];
@@ -90,6 +92,7 @@ export default function Dashboard() {
           <div className="user-info-content">
             <div><span className="user-info-label">Name:</span> {user.name}</div>
             <div><span className="user-info-label">Tier:</span> {user.tier}</div>
+            <div><span className="user-info-label">Email:</span> {user.email}</div>
           </div>
         </div>
         <div className="line-graph-container">

@@ -1,5 +1,6 @@
 import express from 'express'
-import {signup, login, logout} from "../controllers/AuthControllers.js"
+import {signup, login, logout, protect} from "../controllers/AuthControllers.js"
+import { getOwnUserInfo } from '../controllers/UserControllers.js'
 
 const UserRouter = express.Router()
 
@@ -12,5 +13,7 @@ UserRouter
 UserRouter
     .route('/logout')
     .post(logout)
-
+UserRouter
+    .route("/getUserInfo")
+    .get(protect, getOwnUserInfo)
 export {UserRouter}

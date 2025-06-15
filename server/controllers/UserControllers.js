@@ -24,6 +24,21 @@ const createUser = async ({ name, email, password, passwordConfirm }) => {
   return userWithoutPassword;
 };
 
+const getOwnUserInfo = async (req, res)=>{
+  try{
+    
+    const {password, __v, createdAt, updatedAt, ...userInfo} = req.user
 
+    res.status(200).json({
+      status: "success",
+      userInfo
+    })
+  }catch(err){
+    res.status(404).json({
+      status:"failed",
+      message: err
+    })
+  }
+}
 
-export { prisma , createUser};
+export { prisma , createUser, getOwnUserInfo};
